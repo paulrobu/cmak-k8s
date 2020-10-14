@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: cmak
+  namespace: cmak
+spec:
+  selector:
+    app: cmak
+  type: NodePort
+  ports:
+    - port: 8080
+      targetPort: 9000
+      nodePort: 30081     # <- so that CMAK is accessible at "minikube service cmak --url -n cmak" on port 30081 
