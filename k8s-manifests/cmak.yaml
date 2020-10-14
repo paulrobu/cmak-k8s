@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cmak
+  namespace: cmak
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cmak
+  template:
+    metadata:
+      labels:
+        app: cmak
+    spec:
+      containers:
+      - name: cmak
+        image: paulrobu/cmak:latest    # <- from https://hub.docker.com/r/paulrobu/cmak/tags
+        ports:
+        - containerPort: 9000
+        env:
+        - name: ZK_HOSTS
+          value: localhost:2181        # <- replace with running zookeeper nodes
+          
